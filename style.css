@@ -1,0 +1,162 @@
+* {
+  /* seletor universal, serve para pegar todos os elementos*/
+  margin: 0;
+  padding: 0; /*preenchimento*/
+  box-sizing: border-box;
+}
+
+:root {
+  /*seletor, seleciona a raiz do meu html. crio variaveis aqui dentro que poderao ser usadas para todos os elementos do html*/
+  --card-color-primary: #f7dd43; /* sintaxe para criar variáveis no CSS é --nome-da-variavel: #FFF;*/
+  --card-titled-border-color: #746615;
+  --card-bg-color: #1d1c19;
+  --bg: url(./assets/bg-yellow.svg);
+}
+
+body.blue {
+  --card-color-primary: #338af3;
+  --card-titled-border-color: #338af3;
+  --card-bg-color: #202024;
+  --bg: url(./assets/bg-blue.svg);
+}
+
+body.green {
+  --card-color-primary: #047c3f;
+  --card-titled-border-color: #047c3f;
+  --card-bg-color: #1a1f1b;
+  --bg: url(./assets/bg-green.svg);
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: #121214;
+  background-image: var(--bg);
+  background-position: top center; /* y é top e eixo x é center*/
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body * {
+  font-family: "Roboto", sans-serif;
+}
+
+#app {
+  /* seletor de id */
+  /*border: 1px solid white;*/
+  width: fit-content;
+  margin: auto; /* esse auto ajuda a centralizar a caixa*/
+  padding-top: 52px;
+}
+
+header {
+  margin-bottom: 63px;
+  text-align: center;
+}
+
+#cards {
+  display: flex; /*para colocar os cards um ao lado do outro */
+  flex-direction: column; /* para voltar a colocar um card abaixo do outro*/
+  gap: 32px;
+}
+
+.card {
+  /*seletor de classe*/
+  /*border: 1px solid red;*/
+  padding: 32px 23px;
+  text-align: center;
+
+  background: var(--card-bg-color);
+  border-bottom: 2px solid var(--card-color-primary);
+  border-radius: 6px;
+}
+
+.card h2 {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 16px;
+  border: 1px solid var(--card-titled-border-color);
+  border-radius: 6px;
+
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: 53px;
+
+  color: #f7dd43;
+}
+
+.card h2 span {
+  color: #e1e1e6;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.card ul {
+  /*para fazer a linha que separa os horarios dos jogos*/
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 270px;
+}
+
+.card ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card ul li + li {
+  /* significa um li(2) que antes dele temq ue ter um li(1) */
+  padding-top: 24px;
+  border-top: 1px solid #323238;
+}
+
+.card ul li strong {
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 125%;
+
+  color: #e1e1e6;
+}
+
+.card ul li strong:hover, /* para animar as bandeiras e horas, aumentando quando clica*/
+.card ul li img:hover, 
+.card h2:hover {
+  transform: scale(1.1);
+}
+
+.card ul li strong,
+.card ul li img,
+.card h2 {
+  transition: transform 0.3s; /* diminuir a velocidade de animação. deixar mais suave*/
+}
+
+.card {
+  opacity: 0;
+  animation: appear 0.2s forwards; /* fprwards serve para mater as configurações do final, senao termina com a configuração inicial de opacidade 0*/
+}
+@keyframes appear {
+  /* cria uma animação no css*/
+  0% {
+    opacity: 0; /* completamente escuro */
+  }
+  100% {
+    opacity: 1; /* completamente claro*/
+  }
+}
+
+@media (min-width: 400px) {
+  /*sintaxe correta de media queries para deixar aplicação RESPONSIVA*/
+  /* SERVE PARA CONFIGURAR O DESKTOP MODE: se a largura da tela for de 400px para cima, aplica regras abaixo*/
+  #cards {
+    max-width: 670px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
